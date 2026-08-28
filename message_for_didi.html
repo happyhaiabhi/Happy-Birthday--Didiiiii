@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2b1055">
+<title>For My Dearest Didi 💜</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Quicksand',sans-serif;
+    min-height:100vh; min-height:100dvh;
+    background: linear-gradient(160deg,#2b1055 0%,#4a1a6b 45%,#752e7e 100%);
+    color:#fff; overflow-x:hidden;
+    display:flex; align-items:center; justify-content:center;
+    padding:28px 16px;
+  }
+  /* twinkling stars */
+  .stars { position:fixed; inset:0; pointer-events:none; z-index:0; }
+  .star { position:absolute; background:#fff; border-radius:50%; opacity:.7; animation: twinkle 3s ease-in-out infinite; }
+  @keyframes twinkle { 0%,100%{opacity:.15; transform:scale(.7);} 50%{opacity:.9; transform:scale(1.2);} }
+
+  /* floating hearts */
+  .heart-float { position:fixed; bottom:-60px; left:0; font-size:26px; opacity:0; z-index:0;
+    animation: floatUp linear infinite; pointer-events:none; }
+  @keyframes floatUp {
+    0%   { transform:translateY(0) rotate(-8deg); opacity:0; }
+    12%  { opacity:.85; }
+    100% { transform:translateY(-115vh) rotate(10deg); opacity:0; }
+  }
+
+  .card {
+    position:relative; z-index:2; width:100%; max-width:560px;
+    margin:auto; /* safe flex centering — never clips on small screens */
+    background:rgba(255,255,255,.10);
+    border:1.5px solid rgba(255,255,255,.28);
+    border-radius:26px;
+    box-shadow:0 12px 60px rgba(0,0,0,.4);
+    backdrop-filter:blur(10px);
+    padding:34px 26px 30px;
+    text-align:center;
+  }
+  .photo-ring {
+    width:132px; height:132px; margin:0 auto 6px; border-radius:50%;
+    padding:5px;
+    background:linear-gradient(135deg,#ffb6c1,#dda0dd,#ffd700,#ff6b9d);
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+  .photo-ring img {
+    width:100%; height:100%; object-fit:cover; border-radius:50%;
+    border:3px solid rgba(255,255,255,.85); display:block;
+  }
+  @keyframes glowPulse {
+    0%,100% { box-shadow:0 0 22px rgba(255,182,193,.55); transform:scale(1); }
+    50%     { box-shadow:0 0 46px rgba(255,182,193,.95); transform:scale(1.035); }
+  }
+  .title {
+    font-family:'Dancing Script',cursive; font-size:2.5rem; font-weight:700;
+    margin:14px 0 4px;
+    background:linear-gradient(90deg,#ffd1dc,#ffd700,#dda0dd,#ffd1dc);
+    background-size:250% auto;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation: shimmer 4s linear infinite;
+  }
+  @keyframes shimmer { to { background-position:250% center; } }
+  .subtitle { font-size:.95rem; color:#e8d9ff; opacity:.85; margin-bottom:22px; }
+
+  .lines { display:flex; flex-direction:column; gap:13px; margin:8px 0 22px; }
+  .line {
+    opacity:0; transform:translateY(16px);
+    animation: lineIn .9s ease forwards;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:18px 18px 18px 4px;
+    padding:13px 16px;
+    font-size:1.02rem; line-height:1.55;
+    text-align:left;
+  }
+  .line b { color:#ffd700; }
+  @keyframes lineIn { to { opacity:1; transform:translateY(0); } }
+
+  .sign {
+    font-family:'Dancing Script',cursive; font-size:1.9rem; color:#ffd1dc;
+    opacity:0; animation: lineIn 1s ease forwards; animation-delay: 7.2s;
+    margin-bottom:4px;
+  }
+  .sign-sub { font-size:.85rem; color:#e8d9ff; opacity:0; animation: lineIn 1s ease forwards; animation-delay: 7.8s; }
+
+  .replay {
+    margin-top:20px; border:none; cursor:pointer;
+    background:linear-gradient(90deg,#ff6b9d,#9b59b6);
+    color:#fff; font-family:'Quicksand',sans-serif; font-weight:700;
+    font-size:1rem; padding:12px 30px; border-radius:999px;
+    box-shadow:0 6px 22px rgba(155,89,182,.5);
+    transition:transform .2s ease, box-shadow .2s ease;
+    opacity:0; animation: lineIn 1s ease forwards; animation-delay: 8.4s;
+  }
+  .replay:hover { transform:translateY(-2px) scale(1.03); box-shadow:0 10px 30px rgba(155,89,182,.7); }
+
+  /* staggered message lines */
+  .line:nth-child(1){ animation-delay:.6s; }
+  .line:nth-child(2){ animation-delay:1.6s; }
+  .line:nth-child(3){ animation-delay:2.6s; }
+  .line:nth-child(4){ animation-delay:3.6s; }
+  .line:nth-child(5){ animation-delay:4.6s; }
+  .line:nth-child(6){ animation-delay:5.6s; }
+  .line:nth-child(7){ animation-delay:6.6s; }
+
+  .top-emoji { font-size:1.6rem; letter-spacing:8px; margin-top:10px; }
+
+  /* mobile polish */
+  body { overscroll-behavior-y:contain; -webkit-tap-highlight-color:transparent; }
+  .replay { touch-action:manipulation; }
+  @media (max-width: 400px) {
+    body { padding:20px 10px; }
+    .card { padding:26px 14px 24px; border-radius:22px; }
+    .photo-ring { width:108px; height:108px; }
+    .title { font-size:2.05rem; }
+    .line { font-size:.95rem; padding:11px 13px; }
+    .sign { font-size:1.65rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="card">
+  <div class="top-emoji">💜 🎂 💜</div>
+  <div class="photo-ring"><img src="photo1.jpg?v=2" alt="Didi"></div>
+  <div class="title">For My Dearest Didi</div>
+  <div class="subtitle">ek chhota sa message, dher saara pyaar 💌</div>
+
+  <div class="lines" id="lines">
+    <div class="line">🎂 <b>Happy Birthday Didi!</b> Aaj sirf tumhara din hai — no lectures, no scoldings... pakka? 😄</div>
+    <div class="line">🌟 Tum meri <b>first friend</b> ho, meri 3AM helpline ho, meri personal chef ho — aur sabse badi well-wisher bhi.</div>
+    <div class="line">💪 Tumhare lectures, tumhari daant, aur tumhara unlimited pyaar — yeh sab meri asli <b>strength</b> hai.</div>
+    <div class="line">🍀 Duniya ki sabse lucky cheez? Mujhe tum jaisi <b>didi</b> mili. Baaki sab toh bonus hai.</div>
+    <div class="line">😂 Hum kitna bhi jhagde karein, kitni bhi doori ho — end of the day, <b>team hamesha tumhara aur mera</b> hai. 🤙</div>
+    <div class="line">🙏 Dua hai ki yeh saal tumhare liye full <b>blockbuster</b> ho — khushiyan superhit, tension flop.</div>
+    <div class="line">🥳 Aaj jhoomo, gao, haso, photos kheecho... aur haan — <b>cake mein mera bhi hissa hai!</b> 🎂</div>
+  </div>
+
+  <div class="sign">— Tumhara Bhai 💜</div>
+  <div class="sign-sub">(jo hamesha tumhare shathe-baath khada rahega)</div>
+
+  <button class="replay" onclick="replay()">💝 Ek baar aur</button>
+</div>
+
+<script>
+  // twinkling stars
+  const stars = document.getElementById('stars');
+  for (let i=0;i<60;i++){
+    const s=document.createElement('div');
+    s.className='star';
+    const size=Math.random()*2.6+1;
+    s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${size}px;height:${size}px;animation-delay:${Math.random()*3}s;animation-duration:${2+Math.random()*3}s`;
+    stars.appendChild(s);
+  }
+  // floating hearts
+  const heartChars=['💜','💖','🩷','💗','🤍','✨'];
+  for (let i=0;i<14;i++){
+    const h=document.createElement('div');
+    h.className='heart-float';
+    h.textContent=heartChars[i%heartChars.length];
+    h.style.left=(Math.random()*96)+'%';
+    h.style.fontSize=(16+Math.random()*22)+'px';
+    h.style.animationDuration=(7+Math.random()*8)+'s';
+    h.style.animationDelay=(Math.random()*9)+'s';
+    document.body.appendChild(h);
+  }
+  function replay(){
+    document.querySelectorAll('.line,.sign,.sign-sub,.replay').forEach(el=>{
+      el.style.animation='none'; el.offsetHeight; el.style.animation='';
+    });
+  }
+</script>
+</body>
+</html>
