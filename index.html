@@ -199,7 +199,8 @@
   }
 
   .birthday-card {
-    width: 100%; padding-bottom: 62%;
+    width: 100%;
+    aspect-ratio: 1.61;
     position: relative;
     transform-style: preserve-3d;
     animation: cardFlip 1s ease-out 0.6s both;
@@ -212,13 +213,14 @@
 
   .card-front {
     position: absolute; inset: 0;
+    box-sizing: border-box;
     background: linear-gradient(135deg, #fff 0%, #F8EEFF 60%, #FFF0FA 100%);
     border-radius: 22px;
     box-shadow: 0 8px 40px rgba(155,89,182,0.22), 0 2px 8px rgba(0,0,0,0.06);
     border: 2px solid rgba(221,160,221,0.5);
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    padding: 24px 20px; gap: 8px;
+    padding: 16px 14px; gap: 5px;
     overflow: hidden;
   }
 
@@ -463,6 +465,15 @@
     border: 2px solid rgba(221,160,221,0.45);
     background: #000;
   }
+
+  /* Never crop the cake: preserve the video's original aspect ratio. */
+  .video-container video {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
+    background: #000;
+  }
   .cake-caption {
     font-family: 'Dancing Script', cursive;
     font-size: 1.2rem; color: var(--text-secondary); text-align: center;
@@ -550,8 +561,9 @@
     display: flex; align-items: center; justify-content: center;
   }
 
+  /* Show the complete gift photo instead of cropping its edges. */
   .modal-img-wrap img {
-    width: 100%; height: 100%; object-fit: cover;
+    width: 100%; height: 100%; object-fit: contain;
   }
 
   .modal-img-wrap .modal-emoji-fallback {
@@ -648,7 +660,19 @@
   .modal-video-wrap iframe {
     width: 100%; display: block;
     border-radius: 22px 22px 0 0;
+  }
+
+  /* Keep the entire cake/message video visible, including portrait videos. */
+  .modal-video-wrap video {
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
+    background: #000;
+  }
+
+  .modal-video-wrap iframe {
     aspect-ratio: 16/9;
+    height: min(500px, 70vh);
   }
 
   .gift-front.has-image {
@@ -657,7 +681,7 @@
   }
   .gift-front-img {
     width: 100%; height: 65%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 16px 16px 0 0;
   }
   .gift-front-info {
